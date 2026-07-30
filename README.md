@@ -11,6 +11,11 @@ ones. See `/server/models/Post.js`.
 
 ---
 
+Live deployed link --> https://notice-board-kappa-one.vercel.app/
+
+
+---
+
 ## 1. Local Setup
 
 ### Backend
@@ -54,40 +59,6 @@ After seeding, log in as:
 | Realistic seed data | `/server/utils/seed.js` |
 
 Out of scope (per PRD Phase 1): paid ads, ad-targeting algorithms, native mobile app.
-
----
-
-## 3. Deployment
-
-**Backend → Render or Railway**
-1. Push `/server` to its own GitHub repo (or a subfolder deploy).
-2. New Web Service → connect repo → build command `npm install`, start command `npm start`.
-3. Add env vars: `MONGO_URI`, `JWT_SECRET`, `CLIENT_URL` (your Vercel URL once you have it), `CLOUDINARY_*`.
-4. Note the deployed backend URL, e.g. `https://noticeboard-api.onrender.com`.
-
-**Frontend → Vercel**
-1. Push `/client` to GitHub (or same repo, different root directory).
-2. Import into Vercel → framework preset "Vite".
-3. Env var: `VITE_API_URL=https://noticeboard-api.onrender.com/api`.
-4. Deploy. Note the URL, e.g. `https://noticeboard.vercel.app`.
-
-**Close the loop:** go back to Render/Railway and update `CLIENT_URL` to your
-Vercel URL (needed for CORS), then redeploy the backend.
-
-**Database → MongoDB Atlas**
-- Free M0 cluster. Network Access → allow `0.0.0.0/0` (or Render's static IP
-  if you've enabled one) so the deployed backend can reach it.
-
----
-
-## 4. Deployment Checklist (from the build capsule)
-- [ ] Env vars set on both Render/Railway and Vercel (never committed)
-- [ ] Atlas IP whitelist allows the deployed backend
-- [ ] CORS `CLIENT_URL` matches the live Vercel domain exactly
-- [ ] Cloudinary upload tested from the *deployed* frontend, not just localhost
-- [ ] `npm run seed` run against the production DB (or your own realistic data)
-- [ ] Report → Admin → resolve flow tested end-to-end on the live site
-- [ ] Final live link opened in a fresh/incognito browser and smoke-tested
 
 ---
 
